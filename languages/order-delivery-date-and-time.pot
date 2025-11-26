@@ -1,0 +1,530 @@
+# Copyright (C) 2025 ThemeHigh
+# This file is distributed under the same license as the Order Delivery Date and Time plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Order Delivery Date and Time 1.1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/order-delivery-date-and-time\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-09-13T18:58:20+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: order-delivery-date-and-time\n"
+
+#. Plugin Name of the plugin
+#: order-delivery-date-and-time.php
+msgid "Order Delivery Date and Time"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: order-delivery-date-and-time.php
+msgid "https://themehigh.com/order-delivery-date"
+msgstr ""
+
+#. Description of the plugin
+#: order-delivery-date-and-time.php
+msgid "Organize your order delivery with ease, with a simple order/pickup date-time planner for your store."
+msgstr ""
+
+#. Author of the plugin
+#: order-delivery-date-and-time.php
+msgid "ThemeHigh"
+msgstr ""
+
+#. Author URI of the plugin
+#: order-delivery-date-and-time.php
+msgid "https://themehigh.com/"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:43
+msgid "Sunday"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:44
+msgid "Monday"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:45
+msgid "Tuesday"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:46
+msgid "Wednesday"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:47
+msgid "Thursday"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:48
+msgid "Friday"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:49
+msgid "Saturday"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:63
+#: admin/class-thwdtp-admin-settings-general.php:166
+msgid "Y-m-d"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:64
+#: admin/class-thwdtp-admin-settings-general.php:167
+msgid "d-m-Y"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:65
+#: admin/class-thwdtp-admin-settings-general.php:168
+msgid "m/d/y"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:66
+#: admin/class-thwdtp-admin-settings-general.php:169
+msgid "d.m.y"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:67
+#: admin/class-thwdtp-admin-settings-general.php:170
+msgid "F j,Y"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:72
+msgid "Delvery Date Settings"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:74
+msgid "Enable Delivery Date"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:74
+msgid "Enable delivery date at Checkout page."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:76
+msgid "Make Delivery Date Mandatory"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:78
+msgid "Delivery Date Label"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:80
+#: admin/class-thwdtp-admin-settings-general.php:179
+#: admin/class-thwdtp-admin-settings-general.php:196
+msgid "Processing Time(min)"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:82
+#: admin/class-thwdtp-admin-settings-general.php:180
+msgid "Valid Days"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:82
+#: admin/class-thwdtp-admin-settings-general.php:180
+msgid "Default valid days is 365."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:85
+#: admin/class-thwdtp-admin-settings-general.php:181
+msgid "Week Starts Date"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:87
+#: admin/class-thwdtp-admin-settings-general.php:182
+msgid "Date Format"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:89
+#: admin/class-thwdtp-admin-settings-general.php:183
+msgid "Auto Select First Available Date"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:91
+#: admin/class-thwdtp-admin-settings-general.php:184
+msgid "Off Days"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:100
+#: admin/class-thwdtp-admin-settings-general.php:477
+#: admin/class-thwdtp-admin-settings-general.php:540
+msgid "Delivery Time Settings"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:102
+msgid "Enable Delivery Time"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:102
+msgid "Enable delivery time at Checkout page."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:104
+msgid "Make Delivery Time Mandatory"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:106
+msgid "Delivery Time Label"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:107
+msgid "Processing Time (min)"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:107
+msgid "This field is applicable only if the Delivery Date option is disabled."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:115
+#: admin/class-thwdtp-admin-settings-general.php:129
+#: admin/class-thwdtp-admin-settings-general.php:751
+msgid "Individual Time Slot"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:116
+#: admin/class-thwdtp-admin-settings-general.php:130
+#: admin/class-thwdtp-admin-settings-general.php:752
+msgid "Bulk Time Slot"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:121
+msgid "Week Days"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:122
+#: admin/class-thwdtp-admin-settings-general.php:958
+msgid "Specific Dates"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:145
+msgid "Enable this delivery time slot ."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:147
+msgid "Time Slot Type"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:149
+msgid "Time Slot For"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:149
+msgid "Select Weekday option or Specific delivery dates option to create a time slot."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:151
+msgid "Select Delivery Week Days"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:151
+msgid "Select Delivery Days/Dates for which you want to create an exclusive Time Slot."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:153
+msgid "Select Specific Delivery Dates"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:153
+msgid "Select Delivery Days/Dates for which you want to create an exclusive Time Slot. "
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:175
+#: admin/class-thwdtp-admin-settings-general.php:495
+#: admin/class-thwdtp-admin-settings-general.php:554
+msgid "Pickup Date Settings"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:176
+msgid "Enable Pickup Date"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:176
+msgid "Enable pickup date at Checkout page."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:177
+msgid "Make Pickup Date Mandatory"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:178
+msgid "Pickup Date Label"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:192
+#: admin/class-thwdtp-admin-settings-general.php:504
+#: admin/class-thwdtp-admin-settings-general.php:562
+msgid "Pickup Time Settings"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:193
+msgid "Enable Pickup Time"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:193
+msgid "Enable pickup time at Checkout page."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:194
+msgid "Make Pickup Time Mandatory"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:196
+msgid "This field is applicable only if the Pickup Date option is disabled."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:238
+#: admin/class-thwdtp-admin-settings-general.php:513
+#: admin/class-thwdtp-admin-settings-general.php:569
+msgid "Other Settings"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:239
+msgid "Time Format"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:240
+msgid "The functions below are for the classic checkout and do not work with the WooCommerce block"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:241
+msgid "Section Heading"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:242
+msgid "Field Position"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:244
+msgid "Enable Fields Based on Shipping Method"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:445
+msgid "Your changes were saved."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:448
+msgid "Your changes were not saved due to an error (or you made none!)."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:459
+#: admin/class-thwdtp-admin-settings-general.php:527
+msgid "Delivery Date Settings"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:468
+#: admin/class-thwdtp-admin-settings-general.php:533
+#: admin/class-thwdtp-admin-settings-general.php:935
+msgid "Add Specific Dates"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:486
+#: admin/class-thwdtp-admin-settings-general.php:547
+#: admin/class-thwdtp-admin-settings-general.php:1012
+msgid "Add Holidays"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:593
+#: admin/class-thwdtp-admin-settings-general.php:613
+#: admin/class-thwdtp-admin-settings-general.php:631
+#: admin/class-thwdtp-admin-settings-general.php:650
+#: admin/class-thwdtp-admin-settings-general.php:666
+#: admin/class-thwdtp-admin-settings-general.php:992
+#: admin/class-thwdtp-admin-settings-general.php:1069
+msgid "Save Changes"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:697
+#: admin/class-thwdtp-admin-settings-general.php:800
+msgid "No Time Slot Added."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:762
+msgid "Yes"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:788
+msgid "Edit Slot"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:892
+msgid "Save & Close"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:910
+msgid "New Time Slot"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:913
+msgid "Input Time Slots"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:948
+#: admin/class-thwdtp-admin-settings-general.php:1024
+msgid "Select a Date"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:978
+msgid "No Specific Dates Added."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1021
+msgid "+ Add Date"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1034
+msgid "Holidays"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1055
+msgid "No Holidays Added."
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1085
+msgid "+ Add Time Slot"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1087
+msgid "Remove"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1088
+msgid "Enable"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1089
+msgid "Disable"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1098
+msgid "Days"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1099
+msgid "Time Slot Method"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1101
+msgid "Enabled"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1102
+msgid "Actions"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1113
+msgid "Time From - To"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1129
+#: admin/class-thwdtp-admin-settings-general.php:1140
+#: admin/class-thwdtp-admin-settings-general.php:1170
+#: admin/class-thwdtp-admin-settings-general.php:1186
+msgid "AM"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1130
+#: admin/class-thwdtp-admin-settings-general.php:1141
+#: admin/class-thwdtp-admin-settings-general.php:1171
+#: admin/class-thwdtp-admin-settings-general.php:1187
+msgid "PM"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1133
+msgid "TO"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1163
+msgid "Time Slot Start From"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1179
+msgid "Time Slot Ends At"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1195
+msgid "Each Time Slot Duration"
+msgstr ""
+
+#: admin/class-thwdtp-admin-settings-general.php:1205
+msgid "Interval Between Time Slots"
+msgstr ""
+
+#: admin/class-thwdtp-admin.php:77
+msgid "Delivery Date for Woocommerce"
+msgstr ""
+
+#: admin/class-thwdtp-admin.php:77
+msgid " Date and Time Scheduler"
+msgstr ""
+
+#: admin/class-thwdtp-admin.php:82
+msgid "WooCommerce"
+msgstr ""
+
+#: admin/class-thwdtp-admin.php:88
+msgid "Settings"
+msgstr ""
+
+#: public/class-thwdtp-public.php:174
+#: block/assets/dist/delivery-fields-frontend.js:4
+#: block/assets/js/delivery-fields/block.js:372
+msgid "Delivery Date"
+msgstr ""
+
+#: public/class-thwdtp-public.php:195
+msgid "Delivery Time"
+msgstr ""
+
+#: public/class-thwdtp-public.php:199
+#: public/class-thwdtp-public.php:244
+msgid "Select Time Slot"
+msgstr ""
+
+#: public/class-thwdtp-public.php:220
+msgid "Pickup Date"
+msgstr ""
+
+#: public/class-thwdtp-public.php:240
+msgid "Pickup Time"
+msgstr ""
+
+#: public/class-thwdtp-public.php:500
+msgid "Select Date.."
+msgstr ""
+
+#. translators: %s will be label of the field. For example "country/region".
+#: block/assets/dist/delivery-fields-frontend.js:4
+#: block/assets/dist/pickup-fields-frontend.js:4
+#: block/assets/js/utilities/pickup-components.js:150
+msgid "Please select pickup date"
+msgstr ""
+
+#: block/assets/dist/delivery-fields-frontend.js:4
+#: block/assets/dist/pickup-fields-frontend.js:4
+#: block/assets/js/delivery-fields/block.js:318
+#: block/assets/js/utilities/pickup-components.js:331
+msgid "Select Slot"
+msgstr ""
+
+#: block/assets/dist/delivery-fields-frontend.js:4
+#: block/assets/js/delivery-fields/block.js:34
+msgid "No Slots"
+msgstr ""
+
+#: block/assets/dist/delivery-fields-frontend.js:4
+#: block/assets/js/delivery-fields/block.js:149
+msgid "Please select delivery date"
+msgstr ""
+
+#: block/assets/js/delivery-fields/block.json
+msgctxt "block title"
+msgid "Delivery Date and time"
+msgstr ""
+
+#: block/assets/js/delivery-fields/block.json
+msgctxt "block description"
+msgid "Adds Delivery Date and Time field."
+msgstr ""
