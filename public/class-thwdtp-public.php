@@ -62,17 +62,17 @@ class THWDTP_Public {
 
 		$delivery_date_props  = isset($settings['delivery_date']) ? $settings['delivery_date'] : '';
 		$enable_delivery_date = isset($delivery_date_props['enable_delivery_date']) ? $delivery_date_props['enable_delivery_date'] : '';
-		$delivery_time        = isset($settings['delivery_time']) ? $settings['delivery_time'] : '';
-		$delivery_time_props  = isset($delivery_time['time_settings']) ? $delivery_time['time_settings'] : '';
-		$enable_delivery_time = isset($delivery_time_props['enable_delivery_time']) ? $delivery_time_props['enable_delivery_time'] : '';
-		$delivery_time_slots  = $this->get_available_time_slots('delivery_time', $time_format );
+                $delivery_time        = isset($settings['delivery_time']) ? $settings['delivery_time'] : '';
+                $delivery_time_props  = isset($delivery_time['time_settings']) ? $delivery_time['time_settings'] : '';
+                $enable_delivery_time = isset($delivery_time_props['enable_delivery_time']) ? $delivery_time_props['enable_delivery_time'] : '';
+                $delivery_time_slots  = THWDTP_Utils::get_available_time_slots_for_settings($delivery_time, $time_format);
 
-		$pickup_date_props    = isset($settings['pickup_date']) ? $settings['pickup_date'] : '';
-		$enable_pickup_date   = isset($pickup_date_props['enable_pickup_date']) ? $pickup_date_props['enable_pickup_date'] : '';
-		$pickup_time          = isset($settings['pickup_time']) ? $settings['pickup_time'] : '';
-		$pickup_time_props    = isset($pickup_time['time_settings']) ? $pickup_time['time_settings'] : '';
-		$enable_pickup_time   = isset($pickup_time_props['enable_pickup_time']) ? $pickup_time_props['enable_pickup_time'] : '';
-		$pickup_time_slots    = $this->get_available_time_slots('pickup_time', $time_format );
+                $pickup_schedule      = THWDTP_Utils::get_cart_pickup_schedule($time_format);
+                $pickup_date_props    = isset($pickup_schedule['date_props']) ? $pickup_schedule['date_props'] : array();
+                $pickup_time_props    = isset($pickup_schedule['time_props']) ? $pickup_schedule['time_props'] : array();
+                $pickup_time_slots    = isset($pickup_schedule['time_slots']) ? $pickup_schedule['time_slots'] : array();
+                $enable_pickup_date   = isset($pickup_date_props['enable_pickup_date']) ? $pickup_date_props['enable_pickup_date'] : '';
+                $enable_pickup_time   = isset($pickup_time_props['enable_pickup_time']) ? $pickup_time_props['enable_pickup_time'] : '';
 		
 		$wp_now   = apply_filters('thwdtp_current_datetime',current_datetime());
 		$wdtp_var = array(
