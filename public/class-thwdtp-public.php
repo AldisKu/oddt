@@ -118,12 +118,15 @@ class THWDTP_Public {
 		add_action('woocommerce_checkout_process', array($this, 'woo_checkout_process'));
 		add_action('woocommerce_checkout_create_order', array($this, 'woo_update_order_meta_data'), 10, 2);
 
-		//Order table customer
-		add_action('woocommerce_order_details_after_order_table', array($this, 'display_custom_order_fields_in_order_details_page_customer'), 20, 1);
+                //Order table customer
+                add_action('woocommerce_order_details_after_order_table', array($this, 'display_custom_order_fields_in_order_details_page_customer'), 20, 1);
 
-		//Order meta fields in Email
-		add_filter('woocommerce_email_order_meta_fields', array($this, 'add_meta_fields_in_email'), 10, 3);
-	}
+                //Order meta fields in Email
+                add_filter('woocommerce_email_order_meta_fields', array($this, 'add_meta_fields_in_email'), 10, 3);
+
+                //Compatibility : WooCommerce PDF Invoices & Packing Slips
+                add_action('wpo_wcpdf_after_order_details', array($this, 'display_custom_fields_in_invoice'), 10, 2);
+        }
 
 	public function th_custom_fields($checkout){
 		
@@ -501,11 +504,11 @@ class THWDTP_Public {
 		<?php
 	}
 
-	public function display_custom_order_fields_in_order_details_page_customer($order){
-	
-		$e_fields = $this->get_additional_order_fields($order);
-		$html     = '';
-		if($e_fields){
+        public function display_custom_order_fields_in_order_details_page_customer($order){
+
+                $e_fields = $this->get_additional_order_fields($order);
+                $html     = '';
+                if($e_fields){
 			?>
 			<table class="woocommerce-table woocommerce-table--custom-fields custom-fields thwdtp-custom-fields"> <?php
 				foreach ($e_fields as $key => $fields){ 
@@ -518,9 +521,47 @@ class THWDTP_Public {
 					}
 				} ?>
 			</table>
-			<?php
-		}
-	}
+                        <?php
+                }
+        }
+
+        public function display_custom_fields_in_invoice($document_type, $order){
+
+                if(!$order || !is_a($order, 'WC_Order')){
+                        return;
+                }
+
+                $e_fields = $this->get_additional_order_fields($order);
+
+                $fields_exist = array_filter($e_fields, function($field){
+                        return !empty($field['label']) && !empty($field['value']);
+                });
+
+                if(!$fields_exist){
+                        return;
+                }
+                ?>
+                <table class="thwdtp-invoice-fields">
+                        <thead>
+                                <tr>
+                                        <th colspan="2"><?php esc_html_e('Order Delivery & Pickup Details', 'order-delivery-date-and-time'); ?></th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <?php foreach ($e_fields as $field){
+                                        if(empty($field['label']) || empty($field['value'])){
+                                                continue;
+                                        }
+                                        ?>
+                                        <tr>
+                                                <th scope="row" style="text-align:left; padding-right:8px;"><?php echo esc_html($field['label']); ?></th>
+                                                <td style="text-align:left;"><?php echo esc_html($field['value']); ?></td>
+                                        </tr>
+                                <?php } ?>
+                        </tbody>
+                </table>
+                <?php
+        }
 
 	public function add_meta_fields_in_email($o_fields, $sent_to_admin, $order){
 
