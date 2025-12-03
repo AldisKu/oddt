@@ -121,9 +121,12 @@ class THWDTP_Public {
 		//Order table customer
 		add_action('woocommerce_order_details_after_order_table', array($this, 'display_custom_order_fields_in_order_details_page_customer'), 20, 1);
 
-		//Order meta fields in Email
-		add_filter('woocommerce_email_order_meta_fields', array($this, 'add_meta_fields_in_email'), 10, 3);
-	}
+                //Order meta fields in Email
+                add_filter('woocommerce_email_order_meta_fields', array($this, 'add_meta_fields_in_email'), 10, 3);
+
+                //WooCommerce PDF Invoices & Packing Slips
+                add_action('wpo_wcpdf_after_order_details', array($this, 'display_custom_order_fields_in_pdf'));      
+        }
 
 	public function th_custom_fields($checkout){
 		
@@ -501,7 +504,7 @@ class THWDTP_Public {
 		<?php
 	}
 
-	public function display_custom_order_fields_in_order_details_page_customer($order){
+        public function display_custom_order_fields_in_order_details_page_customer($order){
 	
 		$e_fields = $this->get_additional_order_fields($order);
 		$html     = '';
@@ -519,8 +522,37 @@ class THWDTP_Public {
 				} ?>
 			</table>
 			<?php
-		}
-	}
+                }
+        }
+
+        public function display_custom_order_fields_in_pdf($document){
+
+                if(empty($document) || !isset($document->order)){
+                        return;
+                }
+
+                $order = $document->order;
+
+                $e_fields = $this->get_additional_order_fields($order);
+
+                if(!$e_fields){
+                        return;
+                }
+
+                ?>
+                <table class="woocommerce-table woocommerce-table--custom-fields custom-fields thwdtp-custom-fields"> <?php
+                        foreach ($e_fields as $key => $fields){
+                                if($fields){?>
+                                        <tr>
+                                                <th scope="row"> <?php echo esc_html($fields['label']); ?> </th>
+                                                <td> <?php echo esc_html($fields['value']); ?> </td>
+                                        </tr>
+                                        <?php
+                                }
+                        } ?>
+                </table>
+                <?php
+        }
 
 	public function add_meta_fields_in_email($o_fields, $sent_to_admin, $order){
 

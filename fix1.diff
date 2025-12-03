@@ -1,0 +1,171 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/public/class-thwdtp-public.php b/public/class-thwdtp-public.php
+index 57e22cb969b24dfdc7f2f4e05d4a712e4d5b01b8..c1915c9326d87bafc716050403e4919f63f8e4e4 100644
+--- a/public/class-thwdtp-public.php
++++ b/public/class-thwdtp-public.php
+@@ -99,53 +99,56 @@ class THWDTP_Public {
+ 			'include_current_time_slot' =>  apply_filters('thwdtp_include_current_time_slot', false),
+ 		);
+ 
+ 		wp_localize_script('thwdtp-public-script','thwdtp_public_var', $wdtp_var);	
+ 	}
+ 
+ 
+ 	public function define_public_hooks(){
+ 		//Show  Fields in Checkout Page
+ 		$fields_settings = THWDTP_UTILS::get_settings_by_section('common_fields');
+ 
+ 		$position_hook = isset($fields_settings['field_positions']) ? $fields_settings['field_positions'] : 'after_order_notes' ;
+ 		$position_hook = apply_filters('thwdtp_position_hook', "woocommerce_{$position_hook}");
+ 
+ 		add_action($position_hook,array($this,'th_custom_fields'));
+ 		//Checkout Init
+ 		add_filter('woocommerce_checkout_fields', array($this, 'woo_checkout_fields'),10,1);
+ 		
+ 		//Checkout Process(Validate Date and time, save order meta
+ 		add_action('woocommerce_checkout_process', array($this, 'woo_checkout_process'));
+ 		add_action('woocommerce_checkout_create_order', array($this, 'woo_update_order_meta_data'), 10, 2);
+ 
+ 		//Order table customer
+ 		add_action('woocommerce_order_details_after_order_table', array($this, 'display_custom_order_fields_in_order_details_page_customer'), 20, 1);
+ 
+-		//Order meta fields in Email
+-		add_filter('woocommerce_email_order_meta_fields', array($this, 'add_meta_fields_in_email'), 10, 3);
+-	}
++                //Order meta fields in Email
++                add_filter('woocommerce_email_order_meta_fields', array($this, 'add_meta_fields_in_email'), 10, 3);
++
++                //WooCommerce PDF Invoices & Packing Slips
++                add_action('wpo_wcpdf_after_order_details', array($this, 'display_custom_order_fields_in_pdf'));      
++        }
+ 
+ 	public function th_custom_fields($checkout){
+ 		
+ 		$settings                = THWDTP_UTILS::get_general_settings();
+ 		$settings                = $settings ? $settings : THWDTP_Utils::get_default_settings();
+ 		$delivery_date           = ((isset($settings['delivery_date'])) && (is_array($settings['delivery_date']))) ? $settings['delivery_date'] : '';
+ 		$is_enable_delivery_date =  $delivery_date && isset($delivery_date['enable_delivery_date']) ? $delivery_date['enable_delivery_date'] : '';
+ 		$delivery_time           = ((isset($settings['delivery_time'])) && (is_array($settings['delivery_time']))) ? $settings['delivery_time'] : '';
+ 		$time_settings           = ((isset($delivery_time['time_settings'])) && (is_array($delivery_time['time_settings']))) ? $delivery_time['time_settings'] : '';
+ 		$is_enable_delivery_time =  $time_settings && isset($time_settings['enable_delivery_time']) ? $time_settings['enable_delivery_time'] : '';
+ 		$pickup_date           = ((isset($settings['pickup_date'])) && (is_array($settings['pickup_date']))) ? $settings['pickup_date'] : '';
+ 		$is_enable_pickup_date =  is_array($pickup_date)  && isset($pickup_date ['enable_pickup_date']) ? $pickup_date['enable_pickup_date'] : '';
+ 		$pickup_time           = ((isset($settings['pickup_time'])) && (is_array($settings['pickup_time']))) ? $settings['pickup_time'] : '';
+ 		$pickup_time_settings  = ((isset($pickup_time['time_settings'])) && (is_array($pickup_time['time_settings']))) ? $pickup_time['time_settings'] : '';
+ 		$is_enable_pickup_time =  $pickup_time_settings && isset($pickup_time_settings['enable_pickup_time']) ? $pickup_time_settings['enable_pickup_time'] : '';
+ 
+ 		if($is_enable_pickup_date || $is_enable_pickup_time){
+ 			$common_fields = isset($settings['common_fields']) ? $settings['common_fields'] : '';
+ 			$section       = ($common_fields && isset($common_fields['section_name'])) ? $common_fields['section_name'] : '';
+ 			if($section){
+ 				?>
+ 				<h3><?php esc_html_e( $section, 'order-delivery-date-and-time' ); ?></h3>
+ 				<?php
+ 			}
+ 		}
+@@ -479,70 +482,99 @@ class THWDTP_Public {
+ 			$custom_fields = THWDTP_Utils::get_checkout_fieldset('pickup');
+ 			$order_type    = 'pickup';
+ 		}else{
+ 			$custom_fields = THWDTP_Utils::get_checkout_fieldset('delivery');
+ 			$order_type    = 'delivery';
+ 		} 
+ 
+ 		$order->update_meta_data('thwdtp_order_type', $order_type);
+ 
+ 		foreach ($custom_fields as $field_key => $field){
+ 			
+ 			$value =  isset($posted[$field_key]) && !empty($posted[$field_key]) ? sanitize_text_field($posted[$field_key]) : '';
+ 			if($value){
+ 				$order->update_meta_data($field_key, $value);
+ 			}
+ 		}
+ 	}
+ 
+ 	public function woo_datepicker_field(){
+ 		?>
+ 
+ 		<p><input id="thwdtp_date_datepicker" class="flatpickr flatpickr-input active" type="text" placeholder=<?php esc_attr_e('Select Date..','order-delivery-date-and-time' ) ?> readonly="readonly"></p>
+ 		<?php
+ 	}
+ 
+-	public function display_custom_order_fields_in_order_details_page_customer($order){
++        public function display_custom_order_fields_in_order_details_page_customer($order){
+ 	
+ 		$e_fields = $this->get_additional_order_fields($order);
+ 		$html     = '';
+ 		if($e_fields){
+ 			?>
+ 			<table class="woocommerce-table woocommerce-table--custom-fields custom-fields thwdtp-custom-fields"> <?php
+ 				foreach ($e_fields as $key => $fields){ 
+ 					if($fields){?>
+ 						<tr>
+ 							<td><?php echo esc_html($fields['label']); ?> </td>
+ 							<td><?php echo esc_html($fields['value']); ?></td>
+ 						</tr>
+ 						<?php
+ 					}
+ 				} ?>
+ 			</table>
+ 			<?php
+-		}
+-	}
++                }
++        }
++
++        public function display_custom_order_fields_in_pdf($document){
++
++                if(empty($document) || !isset($document->order)){
++                        return;
++                }
++
++                $order = $document->order;
++
++                $e_fields = $this->get_additional_order_fields($order);
++
++                if(!$e_fields){
++                        return;
++                }
++
++                ?>
++                <table class="woocommerce-table woocommerce-table--custom-fields custom-fields thwdtp-custom-fields"> <?php
++                        foreach ($e_fields as $key => $fields){
++                                if($fields){?>
++                                        <tr>
++                                                <th scope="row"> <?php echo esc_html($fields['label']); ?> </th>
++                                                <td> <?php echo esc_html($fields['value']); ?> </td>
++                                        </tr>
++                                        <?php
++                                }
++                        } ?>
++                </table>
++                <?php
++        }
+ 
+ 	public function add_meta_fields_in_email($o_fields, $sent_to_admin, $order){
+ 
+ 		$e_fields = $this->get_additional_order_fields($order);
+ 		return array_merge($o_fields, $e_fields);
+ 	}
+ 
+ 	public function get_additional_order_fields($order){
+ 
+ 		$order_id        = $order->get_id();
+ 		$checkout_fields = WC()->checkout->checkout_fields;
+ 		$custom_fields   = isset($checkout_fields['order_specification']) ? $checkout_fields['order_specification'] : THWDTP_Utils::get_checkout_fieldset();
+ 
+ 		$e_fields      = array();
+ 		foreach ($custom_fields as $field_key => $field){
+ 			
+ 			$label      =  $field['label'];
+ 			//$value      = get_post_meta( $order_id, $field_key, true );
+ 			$value      = $order->get_meta($field_key);
+ 			$field_data = array();
+ 			if(!empty($label) && !empty($value)){
+ 				if($field_key === 'thwdtp_delivery_datepicker'){
+ 					$date_format  = THWDTP_Utils::get_time_format('delivery_date');
+ 					$value        = $date_format ? date($date_format, strtotime($value)) : $value;
+ 				}else if($field_key === 'thwdtp_pickup_datepicker'){
+ 
+EOF
+)
